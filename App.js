@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -7,15 +8,24 @@
  */
 
 import React from 'react';
+// import {SafeAreaView, View, Text} from 'react-native';
 import {
-  SafeAreaView,
-  // Text
-} from 'react-native';
-
+  Container,
+  Header,
+  Content,
+  Button,
+  ListItem,
+  Text,
+  Icon,
+  Left,
+  Body,
+  Right,
+  Switch,
+} from 'native-base';
 import MessageBanner from './react-native-color-picker';
 const App: () => React$Node = () => {
   const color = [
-    'purple',
+    'red',
     '#FF0000',
     '#b4bec8',
     '#64C8D0',
@@ -26,13 +36,56 @@ const App: () => React$Node = () => {
   ];
 
   return (
-    <SafeAreaView>
-      <MessageBanner colors={color} />
-    </SafeAreaView>
+    <Container>
+      <Header />
+      <Content>
+        <ListItem icon>
+          <Left>
+            <Button style={{backgroundColor: '#FF9501'}}>
+              <Icon active name="airplane" />
+            </Button>
+          </Left>
+          <Body>
+            <Text>Airplane Mode</Text>
+          </Body>
+          <Right>
+            <MessageBanner colors={color} />
+            {/* <TouchableOpacity style={{backgroundColor: 'red'}}>
+              <Text>OH</Text>
+            </TouchableOpacity> */}
+          </Right>
+        </ListItem>
+        <ListItem icon>
+          <Left>
+            <Button style={{backgroundColor: '#007AFF'}}>
+              <Icon active name="wifi" />
+            </Button>
+          </Left>
+          <Body>
+            <Text>Wi-Fi</Text>
+          </Body>
+          <Right>
+            <Text>GeekyAnts</Text>
+            <Icon active name="arrow-forward" />
+          </Right>
+        </ListItem>
+        <ListItem icon>
+          <Left>
+            <Button style={{backgroundColor: '#007AFF'}}>
+              <Icon active name="bluetooth" />
+            </Button>
+          </Left>
+          <Body>
+            <Text>Bluetooth</Text>
+          </Body>
+          <Right>
+            <Text>On</Text>
+            <Icon active name="arrow-forward" />
+          </Right>
+        </ListItem>
+      </Content>
+    </Container>
   );
 };
-
-// const styles = StyleSheet.create({
-// });
 
 export default App;
