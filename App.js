@@ -25,14 +25,13 @@ import {
 import MessageBanner from './react-native-color-picker';
 const App: () => React$Node = () => {
   const color = [
-    'red',
+    'green',
     '#FF0000',
     '#b4bec8',
     '#64C8D0',
     '#ff6d01',
     '#ffd600',
     '#00bef5',
-    '#ff96e8',
   ];
 
   return (
@@ -50,9 +49,6 @@ const App: () => React$Node = () => {
           </Body>
           <Right>
             <MessageBanner colors={color} />
-            {/* <TouchableOpacity style={{backgroundColor: 'red'}}>
-              <Text>OH</Text>
-            </TouchableOpacity> */}
           </Right>
         </ListItem>
         <ListItem icon>
