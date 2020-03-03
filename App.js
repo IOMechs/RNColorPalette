@@ -8,7 +8,6 @@
  */
 
 import React from 'react';
-// import {SafeAreaView, View, Text} from 'react-native';
 import {
   Container,
   Header,
@@ -20,20 +19,10 @@ import {
   Left,
   Body,
   Right,
-  Switch,
 } from 'native-base';
-import MessageBanner from './react-native-color-picker';
+import MessageBanner from './react-native-color-picker/lib';
+import color from './colors';
 const App: () => React$Node = () => {
-  const color = [
-    'green',
-    '#FF0000',
-    '#b4bec8',
-    '#64C8D0',
-    '#ff6d01',
-    '#ffd600',
-    '#00bef5',
-  ];
-
   return (
     <Container>
       <Header />
