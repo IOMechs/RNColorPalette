@@ -20,7 +20,7 @@ import {
   Body,
   Right,
 } from 'native-base';
-import MessageBanner from './react-native-color-picker/lib';
+import MessageBanner from './react-native-color-picker-lib';
 import color from './colors';
 const App: () => React$Node = () => {
   return (
