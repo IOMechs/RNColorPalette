@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "clean": "cd android && gradlew clean && cd ./..",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
@@ -12,8 +13,7 @@
   "dependencies": {
     "native-base": "^2.13.8",
     "react": "16.9.0",
-    "react-native": "0.61.5",
-    "react-native-color-picker": "file:react-native-color-picker-lib"
+    "react-native": "0.61.5"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

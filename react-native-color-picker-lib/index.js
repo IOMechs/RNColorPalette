@@ -15,8 +15,10 @@ import {
   View,
   TouchableOpacity,
   Image,
+  Modal,
+  Dimensions,
 } from 'react-native';
-
+import tick from './tick.png';
 const colors = [
   '#445cb4',
   '#FF0000',
@@ -34,53 +36,127 @@ export default class messageBanner extends Component {
       picker: false,
       colors: props.colors || colors,
       pickedColor: 'orange',
+      screenWidth: Dimensions.get('screen').width,
+      screenHeight: Dimensions.get('screen').height,
+      positions: {},
+      bgColor: props.backgroundColor || '#ffffff',
     };
   }
 
-  updatePicker = () => {
+  togglePicker = () => {
     this.setState({
       picker: !this.state.picker,
     });
   };
   colorPicked = color => {
-    console.log(color + 'wow');
     this.setState({
       pickedColor: color,
     });
-    this.updatePicker();
+    this.togglePicker();
+  };
+  checkElementPosition = event => {
+    this.togglePicker();
+    const {screenWidth, screenHeight} = this.state;
+    const {pageY: y, pageX: x} = event;
+    if (screenWidth / 2 < x) {
+      if (screenHeight / 2 < y) {
+        this.setState({
+          positions: {
+            right: 5,
+            top: y - 80,
+          },
+        });
+      } else {
+        this.setState({
+          positions: {
+            right: 5,
+            top: y + 20,
+          },
+        });
+      }
+    } else {
+      if (screenHeight / 2 < y) {
+        this.setState({
+          positions: {
+            left: 5,
+            top: y - 80,
+          },
+        });
+      } else {
+        this.setState({
+          positions: {
+            left: 5,
+            top: y + 20,
+          },
+        });
+      }
+    }
   };
   render() {
+    const {positions, screenWidth, pickedColor, bgColor} = this.state;
     return (
       <View style={styles.main}>
-        <TouchableOpacity
+        <View
           style={{
-            backgroundColor: this.state.pickedColor,
+            backgroundColor: pickedColor,
             width: 40,
             height: 30,
-            // top: 10,
           }}
-          onPress={() => this.updatePicker()}>
+          onTouchStart={e => this.checkElementPosition(e.nativeEvent)}>
           <Text style={{textAlign: 'center'}}>WOW</Text>
-        </TouchableOpacity>
-        {this.state.picker ? (
-          <View style={{position: 'absolute'}}>
-            <View style={styles.popoverArrow} />
-            <View style={styles.popoverContainer}>
+        </View>
+        <Modal
+          transparent={true}
+          visible={this.state.picker}
+          onRequestClose={() => this.togglePicker()}>
+          <TouchableOpacity
+            style={{flex: 1}}
+            onPressOut={() => this.togglePicker()}>
+            <View
+              style={[
+                {
+                  width: screenWidth - 30,
+                  height: 50,
+                  position: 'absolute',
+                },
+                positions,
+              ]}>
               <ScrollView
                 horizontal={true}
-                showsHorizontalScrollIndicator={false}>
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{
+                  backgroundColor: bgColor,
+                  borderRadius: 10,
+                }}>
                 {this.state.colors.map((color, index) => (
                   <TouchableOpacity
                     key={index}
                     style={styles.colorContent}
-                    onPress={() => this.colorPicked(color)}>
-                    <View style={styles.assignColor(color)} />
+                    onPress={() => this.colorPicked(color)}
+                    activeOpacity={1}>
+                    {pickedColor === color ? (
+                      <View style={styles.assignColor(color)}>
+                        <Image
+                          source={tick}
+                          style={{
+                            width: 22,
+                            height: 22,
+                            padding: 10,
+                            opacity: 1.0,
+                            marginLeft: 3,
+                            marginTop: 3,
+                          }}
+                        />
+                      </View>
+                    ) : (
+                      <View style={styles.assignColor(color)} />
+                    )}
                   </TouchableOpacity>
                 ))}
               </ScrollView>
             </View>
-          </View>
-        ) : null}
+          </TouchableOpacity>
+        </Modal>
       </View>
     );
   }
@@ -89,7 +165,6 @@ export default class messageBanner extends Component {
 const styles = StyleSheet.create({
   main: {
     width: 50,
-    // backgroundColor: 'black',
   },
   colorPaletteContainer: {
     height: 40,
@@ -107,7 +182,6 @@ const styles = StyleSheet.create({
     zIndex: 100,
     top: 5,
     left: -100,
-    // right: 1,
     shadowColor: '#AAA',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.8,
@@ -139,7 +213,6 @@ const styles = StyleSheet.create({
     elevation: 100,
   },
   colorContent: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },

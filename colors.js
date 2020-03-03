@@ -6,4 +6,11 @@ export default [
   '#ff6d01',
   '#ffd600',
   '#00bef5',
+  '#ffd65a',
+  '#FF0001',
+  '#b4becb',
+  '#64C8Db',
+  '#ff6d0b',
+  '#ffd60b',
+  '#00befb',
 ];

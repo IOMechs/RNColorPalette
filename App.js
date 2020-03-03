@@ -8,69 +8,63 @@
  */
 
 import React from 'react';
-import {
-  Container,
-  Header,
-  Content,
-  Button,
-  ListItem,
-  Text,
-  Icon,
-  Left,
-  Body,
-  Right,
-} from 'native-base';
+import {View} from 'react-native';
+import {Container, Content, Text} from 'native-base';
 import MessageBanner from './react-native-color-picker-lib';
 import color from './colors';
 const App: () => React$Node = () => {
   return (
     <Container>
-      <Header />
       <Content>
-        <ListItem icon>
-          <Left>
-            <Button style={{backgroundColor: '#FF9501'}}>
-              <Icon active name="airplane" />
-            </Button>
-          </Left>
-          <Body>
-            <Text>Airplane Mode</Text>
-          </Body>
-          <Right>
-            <MessageBanner colors={color} />
-          </Right>
-        </ListItem>
-        <ListItem icon>
-          <Left>
-            <Button style={{backgroundColor: '#007AFF'}}>
-              <Icon active name="wifi" />
-            </Button>
-          </Left>
-          <Body>
-            <Text>Wi-Fi</Text>
-          </Body>
-          <Right>
-            <Text>GeekyAnts</Text>
-            <Icon active name="arrow-forward" />
-          </Right>
-        </ListItem>
-        <ListItem icon>
-          <Left>
-            <Button style={{backgroundColor: '#007AFF'}}>
-              <Icon active name="bluetooth" />
-            </Button>
-          </Left>
-          <Body>
-            <Text>Bluetooth</Text>
-          </Body>
-          <Right>
-            <Text>On</Text>
-            <Icon active name="arrow-forward" />
-          </Right>
-        </ListItem>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
+          <MessageBanner colors={color} backgroundColor="#e8e8e8" />
+          <MessageBanner colors={color} />
+          <MessageBanner colors={color} />
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.textStyle}>Color Platte</Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
+          <MessageBanner colors={color} />
+          <MessageBanner colors={color} />
+          <MessageBanner colors={color} />
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.textStyle}>Color Platte</Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
+          <MessageBanner colors={color} />
+          <MessageBanner colors={color} />
+          <MessageBanner colors={color} />
+        </View>
       </Content>
     </Container>
   );
 };
 
 export default App;
+
+const styles = {
+  textContainer: {
+    height: 500,
+    backgroundColor: '#e6c1c1',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textStyle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+};
