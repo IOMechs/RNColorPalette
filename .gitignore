@@ -2,6 +2,7 @@
 #
 .DS_Store
 
+!/react-native-color-picker/index.js
 # Xcode
 #
 build/
@@ -20,7 +21,6 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-project.xcworkspace
 
 # Android/IntelliJ
 #
@@ -40,6 +40,7 @@ yarn-error.log
 buck-out/
 \.buckd/
 *.keystore
+!debug.keystore
 
 # fastlane
 #
