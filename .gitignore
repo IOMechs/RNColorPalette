@@ -2,7 +2,7 @@
 #
 .DS_Store
 
-!/react-native-color-picker/index.js
+!react-native-color-picker/index.js
 # Xcode
 #
 build/
