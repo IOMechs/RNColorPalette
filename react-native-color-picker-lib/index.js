@@ -16,53 +16,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-// const slides = [
-//   {
-//     key: '11 MB',
-//     text: 'FREE ',
-//     title: 'Mobile ',
-//     uri:
-//       'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png',
-//     backgroundColor: '#20d2bb',
-//   },
-//   {
-//     key: '52 MB',
-//     title: 'Flight ',
-//     uri:
-//       'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png',
-//     backgroundColor: '#febe29',
-//   },
-//   {
-//     key: '14 MB',
-//     text: 'FREE',
-//     title: 'Great ',
-//     uri:
-//       'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png',
-//     backgroundColor: '#22bcb5',
-//   },
-//   {
-//     key: '45 MB',
-//     title: 'Best ',
-//     uri:
-//       'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png',
-//     backgroundColor: '#3395ff',
-//   },
-//   {
-//     key: '33 MB',
-//     title: 'Bus ',
-//     text: 'FREE',
-//     uri:
-//       'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png',
-//     backgroundColor: '#f6437b',
-//   },
-//   {
-//     key: '77 MB',
-//     title: 'Train ',
-//     uri:
-//       'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png',
-//     backgroundColor: '#febe29',
-//   },
-// ];
+
 const colors = [
   '#445cb4',
   '#FF0000',
