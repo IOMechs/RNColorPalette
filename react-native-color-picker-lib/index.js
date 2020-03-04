@@ -37,6 +37,7 @@ export default class messageBanner extends Component {
       screenWidth: Dimensions.get('screen').width,
       screenHeight: Dimensions.get('screen').height,
       positions: {},
+      openAtTop: null,
     };
   }
 
@@ -52,6 +53,7 @@ export default class messageBanner extends Component {
     if (screenWidth / 2 < x) {
       if (screenHeight / 2 < y) {
         this.setState({
+          openAtTop: true,
           positions: {
             right: 5,
             top: y - locationY - 60,
@@ -59,6 +61,7 @@ export default class messageBanner extends Component {
         });
       } else {
         this.setState({
+          openAtTop: false,
           positions: {
             right: 5,
             top: y - locationY + 40,
@@ -68,6 +71,7 @@ export default class messageBanner extends Component {
     } else {
       if (screenHeight / 2 < y) {
         this.setState({
+          openAtTop: true,
           positions: {
             left: 5,
             top: y - locationY - 60,
@@ -75,6 +79,7 @@ export default class messageBanner extends Component {
         });
       } else {
         this.setState({
+          openAtTop: false,
           positions: {
             left: 5,
             top: y - locationY + 40,
@@ -84,17 +89,25 @@ export default class messageBanner extends Component {
     }
   };
   render() {
-    const {screenWidth, picker} = this.state;
+    const {screenWidth, picker, openAtTop} = this.state;
     let {positions} = this.state;
     const {value} = this.props;
     if (this.props.plattePosition) {
-      const {marginTop, marginBottom} = this.props.plattePosition;
+      let {increaseMargin, decreaseMargin} = this.props.plattePosition;
+      if (openAtTop === false) {
+        if (increaseMargin) {
+          increaseMargin = increaseMargin * -1;
+        }
+        if (decreaseMargin) {
+          decreaseMargin = decreaseMargin * -1;
+        }
+      }
       positions = {
         ...positions,
-        top: marginTop
-          ? positions.top - marginTop
-          : marginBottom
-          ? positions.top + marginBottom
+        top: increaseMargin
+          ? positions.top - increaseMargin
+          : decreaseMargin
+          ? positions.top + decreaseMargin
           : positions.top,
       };
     }

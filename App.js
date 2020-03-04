@@ -70,7 +70,8 @@ class App extends React.Component {
                 borderRadius: 50,
               }}
               plattePosition={{
-                marginTop: 10,
+                increaseMargin: 5, // to increase margin from element
+                // decreaseMargin: 20, to decrease default margin
               }}>
               <View>
                 <Text>Custom Platte</Text>
