@@ -11,48 +11,80 @@ import React from 'react';
 import {View} from 'react-native';
 import {Container, Content, Text} from 'native-base';
 import MessageBanner from './react-native-color-picker-lib';
-import color from './colors';
-const App: () => React$Node = () => {
-  return (
-    <Container>
-      <Content>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
-          <MessageBanner colors={color} backgroundColor="#e8e8e8" />
-          <MessageBanner colors={color} />
-          <MessageBanner colors={color} />
-        </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.textStyle}>Color Platte</Text>
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
-          <MessageBanner colors={color} />
-          <MessageBanner colors={color} />
-          <MessageBanner colors={color} />
-        </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.textStyle}>Color Platte</Text>
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
-          <MessageBanner colors={color} />
-          <MessageBanner colors={color} />
-          <MessageBanner colors={color} />
-        </View>
-      </Content>
-    </Container>
-  );
-};
+import colors from './colors';
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pickedColor1: 'orange',
+      pickedColor2: 'green',
+    };
+  }
+  colorPicked = color => {
+    this.setState({
+      pickedColor1: color,
+    });
+  };
+  colorPicked2 = color => {
+    this.setState({
+      pickedColor2: color,
+    });
+  };
+  render() {
+    const {pickedColor1, pickedColor2} = this.state;
+    return (
+      <Container>
+        <Content>
+          <View style={styles.textContainer}>
+            <Text style={styles.textStyle}>Color Platte</Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}>
+            <MessageBanner
+              colorList={colors}
+              value={pickedColor2}
+              onItemSelect={this.colorPicked2}
+              style={{
+                backgroundColor: pickedColor2,
+                width: 90,
+                height: 30,
+              }}>
+              <View>
+                <Text>Default platte</Text>
+              </View>
+            </MessageBanner>
+            <MessageBanner
+              colorList={colors}
+              value={pickedColor1}
+              onItemSelect={this.colorPicked}
+              style={{
+                backgroundColor: pickedColor1,
+                width: 90,
+                height: 30,
+              }}
+              platteStyle={{
+                backgroundColor: '#000',
+                borderRadius: 50,
+              }}
+              plattePosition={{
+                marginTop: 10,
+              }}>
+              <View>
+                <Text>Custom Platte</Text>
+              </View>
+            </MessageBanner>
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.textStyle}>Color Platte</Text>
+          </View>
+        </Content>
+      </Container>
+    );
+  }
+}
 
 export default App;
 

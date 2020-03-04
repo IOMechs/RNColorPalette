@@ -9,7 +9,6 @@
 
 import React, {Component} from 'react';
 import {
-  Text,
   StyleSheet,
   ScrollView,
   View,
@@ -34,12 +33,10 @@ export default class messageBanner extends Component {
     super(props);
     this.state = {
       picker: false,
-      colors: props.colors || colors,
-      pickedColor: 'orange',
+      colorList: props.colorList || colors,
       screenWidth: Dimensions.get('screen').width,
       screenHeight: Dimensions.get('screen').height,
       positions: {},
-      bgColor: props.backgroundColor || '#ffffff',
     };
   }
 
@@ -47,12 +44,6 @@ export default class messageBanner extends Component {
     this.setState({
       picker: !this.state.picker,
     });
-  };
-  colorPicked = color => {
-    this.setState({
-      pickedColor: color,
-    });
-    this.togglePicker();
   };
   checkElementPosition = event => {
     this.togglePicker();
@@ -93,37 +84,55 @@ export default class messageBanner extends Component {
     }
   };
   render() {
-    const {positions, screenWidth, pickedColor, bgColor} = this.state;
+    const {screenWidth, picker} = this.state;
+    let {positions} = this.state;
+    const {value} = this.props;
+    if (this.props.plattePosition) {
+      const {marginTop, marginBottom} = this.props.plattePosition;
+      positions = {
+        ...positions,
+        top: marginTop
+          ? positions.top - marginTop
+          : marginBottom
+          ? positions.top + marginBottom
+          : positions.top,
+      };
+    }
     return (
-      <View style={styles.main}>
+      <View>
         <View
-          style={{
-            backgroundColor: pickedColor,
-            width: 40,
-            height: 30,
-          }}
+          style={this.props.style ? this.props.style : {}}
           onTouchStart={e => this.checkElementPosition(e.nativeEvent)}>
-          <Text style={{textAlign: 'center'}}>WOW</Text>
+          {this.props.children}
         </View>
         <Modal
           transparent={true}
-          visible={this.state.picker}
+          visible={picker}
           onRequestClose={() => this.togglePicker()}>
           <TouchableOpacity
             style={styles.modalMainContainer}
             onPressOut={() => this.togglePicker()}>
-            <View style={[styles.modalContainer(screenWidth), positions]}>
+            <View
+              style={[
+                styles.modalContainer(screenWidth),
+                positions,
+                this.props.platteStyle
+                  ? this.props.platteStyle
+                  : {backgroundColor: '#fff'},
+              ]}>
               <ScrollView
                 horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.scrollBar(bgColor)}>
-                {this.state.colors.map((color, index) => (
+                showsHorizontalScrollIndicator={false}>
+                {this.state.colorList.map((color, index) => (
                   <TouchableOpacity
                     key={index}
                     style={styles.colorContent}
-                    onPress={() => this.colorPicked(color)}
+                    onPress={() => {
+                      this.props.onItemSelect(color);
+                      this.togglePicker();
+                    }}
                     activeOpacity={1}>
-                    {pickedColor === color ? (
+                    {value === color ? (
                       <View style={styles.assignColor(color)}>
                         <Image source={tick} style={styles.tickImage} />
                       </View>
@@ -142,9 +151,6 @@ export default class messageBanner extends Component {
 }
 
 const styles = StyleSheet.create({
-  main: {
-    width: 50,
-  },
   // Color Modal Styling
   modalMainContainer: {
     flex: 1,
@@ -153,15 +159,7 @@ const styles = StyleSheet.create({
     width: screenWidth - 30,
     height: 50,
     position: 'absolute',
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
-    borderBottomLeftRadius: 50,
-    borderBottomRightRadius: 50,
     overflow: 'hidden',
-  }),
-  scrollBar: bgColor => ({
-    backgroundColor: bgColor,
-    borderRadius: 10,
   }),
   colorContent: {
     justifyContent: 'center',
