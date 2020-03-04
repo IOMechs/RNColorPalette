@@ -9,14 +9,15 @@
 
 import React, {Component} from 'react';
 import {
-  Text,
   StyleSheet,
   ScrollView,
   View,
   TouchableOpacity,
   Image,
+  Modal,
+  Dimensions,
 } from 'react-native';
-
+import tick from './tick.png';
 const colors = [
   '#445cb4',
   '#FF0000',
@@ -32,114 +33,148 @@ export default class messageBanner extends Component {
     super(props);
     this.state = {
       picker: false,
-      colors: props.colors || colors,
-      pickedColor: 'orange',
+      colorList: props.colorList || colors,
+      screenWidth: Dimensions.get('screen').width,
+      screenHeight: Dimensions.get('screen').height,
+      positions: {},
+      openAtTop: null,
     };
   }
 
-  updatePicker = () => {
+  togglePicker = () => {
     this.setState({
       picker: !this.state.picker,
     });
   };
-  colorPicked = color => {
-    console.log(color + 'wow');
-    this.setState({
-      pickedColor: color,
-    });
-    this.updatePicker();
+  checkElementPosition = event => {
+    this.togglePicker();
+    const {screenWidth, screenHeight} = this.state;
+    const {pageY: y, pageX: x, locationY} = event;
+    if (screenWidth / 2 < x) {
+      if (screenHeight / 2 < y) {
+        this.setState({
+          openAtTop: true,
+          positions: {
+            right: 5,
+            top: y - locationY - 60,
+          },
+        });
+      } else {
+        this.setState({
+          openAtTop: false,
+          positions: {
+            right: 5,
+            top: y - locationY + 40,
+          },
+        });
+      }
+    } else {
+      if (screenHeight / 2 < y) {
+        this.setState({
+          openAtTop: true,
+          positions: {
+            left: 5,
+            top: y - locationY - 60,
+          },
+        });
+      } else {
+        this.setState({
+          openAtTop: false,
+          positions: {
+            left: 5,
+            top: y - locationY + 40,
+          },
+        });
+      }
+    }
   };
   render() {
+    const {screenWidth, picker, openAtTop} = this.state;
+    let {positions} = this.state;
+    const {value} = this.props;
+    if (this.props.plattePosition) {
+      let {increaseMargin, decreaseMargin} = this.props.plattePosition;
+      if (openAtTop === false) {
+        if (increaseMargin) {
+          increaseMargin = increaseMargin * -1;
+        }
+        if (decreaseMargin) {
+          decreaseMargin = decreaseMargin * -1;
+        }
+      }
+      positions = {
+        ...positions,
+        top: increaseMargin
+          ? positions.top - increaseMargin
+          : decreaseMargin
+          ? positions.top + decreaseMargin
+          : positions.top,
+      };
+    }
     return (
-      <View style={styles.main}>
-        <TouchableOpacity
-          style={{
-            backgroundColor: this.state.pickedColor,
-            width: 40,
-            height: 30,
-            // top: 10,
-          }}
-          onPress={() => this.updatePicker()}>
-          <Text style={{textAlign: 'center'}}>WOW</Text>
-        </TouchableOpacity>
-        {this.state.picker ? (
-          <View style={{position: 'absolute'}}>
-            <View style={styles.popoverArrow} />
-            <View style={styles.popoverContainer}>
+      <View>
+        <View
+          style={this.props.style ? this.props.style : {}}
+          onTouchStart={e => this.checkElementPosition(e.nativeEvent)}>
+          {this.props.children}
+        </View>
+        <Modal
+          transparent={true}
+          visible={picker}
+          onRequestClose={() => this.togglePicker()}>
+          <TouchableOpacity
+            style={styles.modalMainContainer}
+            onPressOut={() => this.togglePicker()}>
+            <View
+              style={[
+                styles.modalContainer(screenWidth),
+                positions,
+                this.props.platteStyle
+                  ? this.props.platteStyle
+                  : {backgroundColor: '#fff'},
+              ]}>
               <ScrollView
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}>
-                {this.state.colors.map((color, index) => (
+                {this.state.colorList.map((color, index) => (
                   <TouchableOpacity
                     key={index}
                     style={styles.colorContent}
-                    onPress={() => this.colorPicked(color)}>
-                    <View style={styles.assignColor(color)} />
+                    onPress={() => {
+                      this.props.onItemSelect(color);
+                      this.togglePicker();
+                    }}
+                    activeOpacity={1}>
+                    {value === color ? (
+                      <View style={styles.assignColor(color)}>
+                        <Image source={tick} style={styles.tickImage} />
+                      </View>
+                    ) : (
+                      <View style={styles.assignColor(color)} />
+                    )}
                   </TouchableOpacity>
                 ))}
               </ScrollView>
             </View>
-          </View>
-        ) : null}
+          </TouchableOpacity>
+        </Modal>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  main: {
-    width: 50,
-    // backgroundColor: 'black',
-  },
-  colorPaletteContainer: {
-    height: 40,
-    width: 40,
-    borderRadius: 100,
-    backgroundColor: 'red',
-    position: 'relative',
-  },
-  popoverContainer: {
-    position: 'absolute',
-    width: 200,
-    height: 50,
-    backgroundColor: 'blue',
-    borderRadius: 4,
-    zIndex: 100,
-    top: 5,
-    left: -100,
-    // right: 1,
-    shadowColor: '#AAA',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.8,
-    shadowRadius: 1,
-    elevation: 100,
-    flexDirection: 'row',
-  },
-  popoverArrow: {
-    top: -20,
-    left: 16,
-    width: 0,
-    height: 0,
-    backgroundColor: 'transparent',
-    borderStyle: 'solid',
-    borderLeftWidth: 12,
-    borderRightWidth: 12,
-    borderTopWidth: 20,
-    borderLeftColor: 'transparent',
-    borderRightColor: 'transparent',
-    borderTopColor: 'white',
-    margin: 0,
-    marginLeft: -6,
-    borderWidth: 0,
-    borderColor: 'transparent',
-    shadowColor: '#AAA',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0,
-    shadowRadius: 1,
-    elevation: 100,
-  },
-  colorContent: {
+  // Color Modal Styling
+  modalMainContainer: {
     flex: 1,
+  },
+  modalContainer: screenWidth => ({
+    width: screenWidth - 30,
+    height: 50,
+    position: 'absolute',
+    overflow: 'hidden',
+  }),
+  colorContent: {
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -151,5 +186,13 @@ const styles = StyleSheet.create({
       marginLeft: 8,
       backgroundColor: color,
     };
+  },
+  tickImage: {
+    width: 20,
+    height: 20,
+    padding: 10,
+    opacity: 0.7,
+    marginLeft: 5,
+    marginTop: 5,
   },
 });
