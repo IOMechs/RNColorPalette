@@ -11,13 +11,15 @@ import React from 'react';
 import {View} from 'react-native';
 import {Container, Content, Text} from 'native-base';
 import MessageBanner from './react-native-color-picker-lib';
-import colors from './colors';
+import colorList from './colors';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       pickedColor1: 'orange',
       pickedColor2: 'green',
+      colors: colorList,
     };
   }
   colorPicked = color => {
@@ -30,8 +32,15 @@ class App extends React.Component {
       pickedColor2: color,
     });
   };
+  AddColor = color => {
+    this.setState({
+      colors: [...this.state.colors, color],
+    });
+  };
+
   render() {
-    const {pickedColor1, pickedColor2} = this.state;
+    const {pickedColor1, pickedColor2, colors} = this.state;
+    console.log('colors', colors);
     return (
       <Container>
         <Content>
@@ -47,6 +56,7 @@ class App extends React.Component {
               colorList={colors}
               value={pickedColor2}
               onItemSelect={this.colorPicked2}
+              AddPickedColor={colour => this.AddColor(colour)}
               style={{
                 backgroundColor: pickedColor2,
                 width: 110,
@@ -60,6 +70,7 @@ class App extends React.Component {
               colorList={colors}
               value={pickedColor1}
               onItemSelect={this.colorPicked}
+              AddPickedColor={colour => this.AddColor(colour)}
               style={{
                 backgroundColor: pickedColor1,
                 width: 110,
