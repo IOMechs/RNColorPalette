@@ -36,7 +36,7 @@ class App extends React.Component {
       <Container>
         <Content>
           <View style={styles.textContainer}>
-            <Text style={styles.textStyle}>Color Platte</Text>
+            <Text style={styles.textStyle}>Color Palette</Text>
           </View>
           <View
             style={{
