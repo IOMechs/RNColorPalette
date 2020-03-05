@@ -29,7 +29,7 @@ class App extends React.Component {
     this.setState({
       pickedColor2: color,
     });
-  };
+  }; 
   render() {
     const {pickedColor1, pickedColor2} = this.state;
     return (
