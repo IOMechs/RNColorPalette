@@ -36,7 +36,7 @@ class App extends React.Component {
       <Container>
         <Content>
           <View style={styles.textContainer}>
-            <Text style={styles.textStyle}>Color Platte</Text>
+            <Text style={styles.textStyle}>Color Palette</Text>
           </View>
           <View
             style={{
@@ -49,11 +49,11 @@ class App extends React.Component {
               onItemSelect={this.colorPicked2}
               style={{
                 backgroundColor: pickedColor2,
-                width: 90,
+                width: 110,
                 height: 30,
               }}>
               <View>
-                <Text>Default platte</Text>
+                <Text>Default Palette</Text>
               </View>
             </MessageBanner>
             <MessageBanner
@@ -62,24 +62,27 @@ class App extends React.Component {
               onItemSelect={this.colorPicked}
               style={{
                 backgroundColor: pickedColor1,
-                width: 90,
+                width: 110,
                 height: 30,
               }}
               platteStyle={{
                 backgroundColor: '#000',
-                borderRadius: 50,
+                borderRadius: 10,
               }}
               plattePosition={{
                 increaseMargin: 5, // to increase margin from element
                 // decreaseMargin: 20, to decrease default margin
+              }}
+              colorContainerStyle={{
+                borderRadius: 5,
               }}>
               <View>
-                <Text>Custom Platte</Text>
+                <Text>Custom Palette</Text>
               </View>
             </MessageBanner>
           </View>
           <View style={styles.textContainer}>
-            <Text style={styles.textStyle}>Color Platte</Text>
+            <Text style={styles.textStyle}>Color Palette</Text>
           </View>
         </Content>
       </Container>

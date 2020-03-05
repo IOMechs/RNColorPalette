@@ -91,7 +91,7 @@ export default class messageBanner extends Component {
   render() {
     const {screenWidth, picker, openAtTop} = this.state;
     let {positions} = this.state;
-    const {value} = this.props;
+    const {value, colorContainerStyle} = this.props;
     if (this.props.plattePosition) {
       let {increaseMargin, decreaseMargin} = this.props.plattePosition;
       if (openAtTop === false) {
@@ -146,11 +146,20 @@ export default class messageBanner extends Component {
                     }}
                     activeOpacity={1}>
                     {value === color ? (
-                      <View style={styles.assignColor(color)}>
+                      <View
+                        style={[
+                          styles.assignColor(color),
+                          colorContainerStyle ? colorContainerStyle : {},
+                        ]}>
                         <Image source={tick} style={styles.tickImage} />
                       </View>
                     ) : (
-                      <View style={styles.assignColor(color)} />
+                      <View
+                        style={[
+                          styles.assignColor(color),
+                          colorContainerStyle ? colorContainerStyle : {},
+                        ]}
+                      />
                     )}
                   </TouchableOpacity>
                 ))}
