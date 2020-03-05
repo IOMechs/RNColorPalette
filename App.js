@@ -40,7 +40,6 @@ class App extends React.Component {
 
   render() {
     const {pickedColor1, pickedColor2, colors} = this.state;
-    console.log('colors', colors);
     return (
       <Container>
         <Content>
