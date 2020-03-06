@@ -10,14 +10,16 @@
 import React from 'react';
 import {View} from 'react-native';
 import {Container, Content, Text} from 'native-base';
-import MessageBanner from './react-native-color-picker-lib';
-import colors from './colors';
+import RNColorPalette from './react-native-color-picker-lib';
+import colorList from './colors';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       pickedColor1: 'orange',
       pickedColor2: 'green',
+      colors: colorList,
     };
   }
   colorPicked = color => {
@@ -29,9 +31,14 @@ class App extends React.Component {
     this.setState({
       pickedColor2: color,
     });
-  }; 
+  };
+  AddColor = color => {
+    this.setState({
+      colors: [...this.state.colors, color],
+    });
+  };
   render() {
-    const {pickedColor1, pickedColor2} = this.state;
+    const {pickedColor1, pickedColor2, colors} = this.state;
     return (
       <Container>
         <Content>
@@ -43,43 +50,48 @@ class App extends React.Component {
               flexDirection: 'row',
               justifyContent: 'space-between',
             }}>
-            <MessageBanner
+            <RNColorPalette
               colorList={colors}
               value={pickedColor2}
               onItemSelect={this.colorPicked2}
+              AddPickedColor={colour => this.AddColor(colour)}
               style={{
                 backgroundColor: pickedColor2,
-                width: 90,
+                width: 110,
                 height: 30,
               }}>
               <View>
-                <Text>Default platte</Text>
+                <Text>Default Palette</Text>
               </View>
-            </MessageBanner>
-            <MessageBanner
+            </RNColorPalette>
+            <RNColorPalette
               colorList={colors}
               value={pickedColor1}
               onItemSelect={this.colorPicked}
+              AddPickedColor={colour => this.AddColor(colour)}
               style={{
                 backgroundColor: pickedColor1,
-                width: 90,
+                width: 110,
                 height: 30,
               }}
               platteStyle={{
                 backgroundColor: '#000',
-                borderRadius: 50,
+                borderRadius: 10,
               }}
               plattePosition={{
                 increaseMargin: 5, // to increase margin from element
                 // decreaseMargin: 20, to decrease default margin
+              }}
+              colorContainerStyle={{
+                borderRadius: 5,
               }}>
               <View>
-                <Text>Custom Platte</Text>
+                <Text>Custom Palette</Text>
               </View>
-            </MessageBanner>
+            </RNColorPalette>
           </View>
           <View style={styles.textContainer}>
-            <Text style={styles.textStyle}>Color Platte</Text>
+            <Text style={styles.textStyle}>Color Palette</Text>
           </View>
         </Content>
       </Container>
