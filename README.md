@@ -14,7 +14,7 @@ Below you will find some information on how to perform common tasks.<br>
 
 
 ## Demo
-![react-react-native-color-picker-lib](![react-native-color-picker](https://files.slack.com/files-pri/T2N3XAL3Z-FUKDB04MP/download/20200304_191657.mp4)
+![RN-Color-Palette](![react-native-color-picker](https://files.slack.com/files-pri/T2N3XAL3Z-FUKDB04MP/download/20200304_191657.mp4)
 )
 
 
@@ -26,19 +26,19 @@ https://files.slack.com/files-pri/T2N3XAL3Z-FUKDB04MP/download/20200304_191657.m
 
 Run the following
 ```
-npm install react-native-color-picker-lib
+npm install RN-Color-Palette
 ```
 or
 ```
-yarn add react-native-color-picker-lib
+yarn add RN-Color-Palette
 ```
 
 ## Basic Usage
 
 ```
-import MessageBanner from 'react-native-color-picker-lib';
+import RNColorPalette from 'RN-Color-Palette';
 
-<MessageBanner colorList={[]}/>
+<RNColorPalette colorList={[]}/>
 ```
 
 
