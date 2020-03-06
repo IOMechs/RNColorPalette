@@ -37,7 +37,6 @@ class App extends React.Component {
       colors: [...this.state.colors, color],
     });
   };
-
   render() {
     const {pickedColor1, pickedColor2, colors} = this.state;
     return (
