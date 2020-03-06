@@ -16,38 +16,36 @@ import {
   Image,
   Modal,
   Dimensions,
+  Text,
 } from 'react-native';
 import tick from './tick.png';
-const colors = [
-  '#445cb4',
-  '#FF0000',
-  '#b4bec8',
-  '#64C8D0',
-  '#ff6d01',
-  '#ffd600',
-  '#00bef5',
-  '#ff96e8',
-];
-export default class messageBanner extends Component {
+import ColorPicker from './color-picker';
+
+export default class RNColorPalette extends Component {
   constructor(props) {
     super(props);
     this.state = {
       picker: false,
-      colorList: props.colorList || colors,
       screenWidth: Dimensions.get('screen').width,
       screenHeight: Dimensions.get('screen').height,
       positions: {},
       openAtTop: null,
+      openColorPicker: false,
     };
   }
 
-  togglePicker = () => {
+  togglePalette = () => {
     this.setState({
       picker: !this.state.picker,
     });
   };
+  toggleColorPicker = () => {
+    this.setState({
+      openColorPicker: !this.state.openColorPicker,
+    });
+  };
   checkElementPosition = event => {
-    this.togglePicker();
+    this.togglePalette();
     const {screenWidth, screenHeight} = this.state;
     const {pageY: y, pageX: x, locationY} = event;
     if (screenWidth / 2 < x) {
@@ -89,7 +87,7 @@ export default class messageBanner extends Component {
     }
   };
   render() {
-    const {screenWidth, picker, openAtTop} = this.state;
+    const {screenWidth, picker, openAtTop, openColorPicker} = this.state;
     let {positions} = this.state;
     const {value, colorContainerStyle} = this.props;
     if (this.props.plattePosition) {
@@ -121,10 +119,10 @@ export default class messageBanner extends Component {
         <Modal
           transparent={true}
           visible={picker}
-          onRequestClose={() => this.togglePicker()}>
+          onRequestClose={() => this.togglePalette()}>
           <TouchableOpacity
             style={styles.modalMainContainer}
-            onPressOut={() => this.togglePicker()}>
+            onPressOut={() => this.togglePalette()}>
             <View
               style={[
                 styles.modalContainer(screenWidth),
@@ -135,34 +133,71 @@ export default class messageBanner extends Component {
               ]}>
               <ScrollView
                 horizontal={true}
-                showsHorizontalScrollIndicator={false}>
-                {this.state.colorList.map((color, index) => (
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{
+                  paddingRight: 8,
+                }}>
+                {this.props.colorList &&
+                  this.props.colorList.length !== 0 &&
+                  this.props.colorList.map((color, index) => (
+                    <TouchableOpacity
+                      key={index}
+                      style={styles.colorContent}
+                      onPress={() => {
+                        this.props.onItemSelect(color);
+                        this.togglePalette();
+                      }}
+                      activeOpacity={1}>
+                      {value === color ? (
+                        <View
+                          style={[
+                            styles.assignColor(color),
+                            colorContainerStyle ? colorContainerStyle : {},
+                          ]}>
+                          <Image source={tick} style={styles.tickImage} />
+                        </View>
+                      ) : (
+                        <View
+                          style={[
+                            styles.assignColor(color),
+                            colorContainerStyle ? colorContainerStyle : {},
+                          ]}
+                        />
+                      )}
+                    </TouchableOpacity>
+                  ))}
+                <View style={styles.colorContent}>
                   <TouchableOpacity
-                    key={index}
-                    style={styles.colorContent}
-                    onPress={() => {
-                      this.props.onItemSelect(color);
-                      this.togglePicker();
+                    style={{
+                      borderWidth: 1.5,
+                      borderColor: '#6f7370',
+                      borderRadius: 100,
+                      width: 30,
+                      height: 30,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      marginLeft: 8,
+                      backgroundColor: '#fff',
                     }}
-                    activeOpacity={1}>
-                    {value === color ? (
-                      <View
-                        style={[
-                          styles.assignColor(color),
-                          colorContainerStyle ? colorContainerStyle : {},
-                        ]}>
-                        <Image source={tick} style={styles.tickImage} />
-                      </View>
-                    ) : (
-                      <View
-                        style={[
-                          styles.assignColor(color),
-                          colorContainerStyle ? colorContainerStyle : {},
-                        ]}
-                      />
-                    )}
+                    onPress={this.toggleColorPicker}>
+                    <Text
+                      style={{fontSize: 28, color: '#6f7370', marginBottom: 3}}>
+                      +
+                    </Text>
                   </TouchableOpacity>
-                ))}
+                  <Modal
+                    visible={openColorPicker}
+                    onRequestClose={() => this.toggleColorPicker()}>
+                    <ColorPicker
+                      toggleColorPicker={this.toggleColorPicker}
+                      SelectedColor={colour => {
+                        this.props.AddPickedColor(colour);
+                        this.toggleColorPicker();
+                        this.togglePalette();
+                      }}
+                    />
+                  </Modal>
+                </View>
               </ScrollView>
             </View>
           </TouchableOpacity>
@@ -173,7 +208,6 @@ export default class messageBanner extends Component {
 }
 
 const styles = StyleSheet.create({
-  // Color Modal Styling
   modalMainContainer: {
     flex: 1,
   },
