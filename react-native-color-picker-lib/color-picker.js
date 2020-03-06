@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Dimensions, Button, StyleSheet, ScrollView} from 'react-native';
-import ColorWheel from './color-picker/color-wheel';
+import ColorWheel from './color-wheel-picker/index';
 
 export default class ColorPicker extends Component {
   constructor(props) {

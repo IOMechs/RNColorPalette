@@ -10,7 +10,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import {Container, Content, Text} from 'native-base';
-import MessageBanner from './react-native-color-picker-lib';
+import RNColorPalette from './react-native-color-picker-lib';
 import colorList from './colors';
 
 class App extends React.Component {
@@ -51,7 +51,7 @@ class App extends React.Component {
               flexDirection: 'row',
               justifyContent: 'space-between',
             }}>
-            <MessageBanner
+            <RNColorPalette
               colorList={colors}
               value={pickedColor2}
               onItemSelect={this.colorPicked2}
@@ -64,8 +64,8 @@ class App extends React.Component {
               <View>
                 <Text>Default Palette</Text>
               </View>
-            </MessageBanner>
-            <MessageBanner
+            </RNColorPalette>
+            <RNColorPalette
               colorList={colors}
               value={pickedColor1}
               onItemSelect={this.colorPicked}
@@ -89,7 +89,7 @@ class App extends React.Component {
               <View>
                 <Text>Custom Palette</Text>
               </View>
-            </MessageBanner>
+            </RNColorPalette>
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.textStyle}>Color Palette</Text>

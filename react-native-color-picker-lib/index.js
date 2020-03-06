@@ -21,7 +21,7 @@ import {
 import tick from './tick.png';
 import ColorPicker from './color-picker';
 
-export default class messageBanner extends Component {
+export default class RNColorPalette extends Component {
   constructor(props) {
     super(props);
     this.state = {
