@@ -60,7 +60,7 @@ class App extends React.Component {
                 width: 110,
                 height: 30,
               }}>
-              <View>
+              <View style={styles.paletteText}>
                 <Text>Default Palette</Text>
               </View>
             </RNColorPalette>
@@ -85,7 +85,7 @@ class App extends React.Component {
               colorContainerStyle={{
                 borderRadius: 5,
               }}>
-              <View>
+              <View style={styles.paletteText}>
                 <Text>Custom Palette</Text>
               </View>
             </RNColorPalette>
@@ -112,4 +112,9 @@ const styles = {
     fontSize: 20,
     fontWeight: 'bold',
   },
+  paletteText: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 };
