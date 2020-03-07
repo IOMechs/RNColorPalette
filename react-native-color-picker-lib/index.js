@@ -17,6 +17,7 @@ import {
   Modal,
   Dimensions,
   Text,
+  Platform
 } from 'react-native';
 import tick from './tick.png';
 import ColorPicker from './color-picker';
@@ -168,20 +169,9 @@ export default class RNColorPalette extends Component {
                   ))}
                 <View style={styles.colorContent}>
                   <TouchableOpacity
-                    style={{
-                      borderWidth: 1.5,
-                      borderColor: '#6f7370',
-                      borderRadius: 100,
-                      width: 30,
-                      height: 30,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      marginLeft: 8,
-                      backgroundColor: '#fff',
-                    }}
+                    style={styles.addButton}
                     onPress={this.toggleColorPicker}>
-                    <Text
-                      style={{fontSize: 28, color: '#6f7370', marginBottom: 3}}>
+                    <Text style={styles.addButtonText}>
                       +
                     </Text>
                   </TouchableOpacity>
@@ -238,4 +228,31 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginTop: 5,
   },
+  addButton: {
+    borderWidth: 1.5,
+    borderColor: '#6f7370',
+    borderRadius: 100,
+    width: 30,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    lineHeight: 30,
+    backgroundColor: '#fff',
+    ...Platform.select({
+      ios: {
+        marginLeft: 8,
+      }
+    })
+  },
+  addButtonText: {
+    fontSize: 28,
+    color: '#6f7370',
+    marginBottom: 3,
+    ...Platform.select({
+      ios: {
+        position: 'relative',
+        bottom: 4
+      }
+    })
+  }
 });
