@@ -1,3 +1,18 @@
+# Logs
+*.log
+npm-debug.log
+
+# Runtime data
+tmp
+build
+dist
+
+# Dependency directory
+node_modules
+
+#package
+*.tgz
+
 # OSX
 #
 .DS_Store
@@ -5,7 +20,7 @@
 !/react-native-color-picker/index.js
 # Xcode
 #
-build/
+demo/build/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -22,9 +37,12 @@ DerivedData
 *.ipa
 *.xcuserstate
 
+
+demo
+
 # Android/IntelliJ
 #
-build/
+demo/build/
 .idea
 .gradle
 local.properties
@@ -32,7 +50,7 @@ local.properties
 
 # node.js
 #
-node_modules/
+demo/node_modules/
 npm-debug.log
 yarn-error.log
 
@@ -57,4 +75,4 @@ buck-out/
 *.jsbundle
 
 # CocoaPods
-/ios/Pods/
+demo/ios/Pods/
