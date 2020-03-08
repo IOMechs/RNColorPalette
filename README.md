@@ -1,5 +1,5 @@
-# RNColorPalette
-A color Picker for RN Devs :)
+## RNColorPalette (Android & IOS)
+A color Picker for React Native Devs :)
 
 Below you will find some information on how to perform common tasks.<br>
 
@@ -14,12 +14,9 @@ Below you will find some information on how to perform common tasks.<br>
 
 
 ## Demo
-![RN-Color-Palette](![react-native-color-picker](https://files.slack.com/files-pri/T2N3XAL3Z-FUKDB04MP/download/20200304_191657.mp4)
-)
+![](assets/android-demo.gif)
 
-
-## Features `v0.1.2`
-https://files.slack.com/files-pri/T2N3XAL3Z-FUKDB04MP/download/20200304_191657.mp4
+## Features `v1.0.0`
 
 
 ## Installation
@@ -27,11 +24,11 @@ https://files.slack.com/files-pri/T2N3XAL3Z-FUKDB04MP/download/20200304_191657.m
 Install the package in your project's folder by using npm or yarn:
 
 ```
-npm install RN-Color-Palette
+npm install rn-color-palette
 ```
 or
 ```
-yarn add RN-Color-Palette
+yarn add rn-color-palette
 ```
 
 ## Basic Usage
@@ -39,7 +36,7 @@ yarn add RN-Color-Palette
 Import RNColorPalette in your AppComponent as below:
 
 ```
-import RNColorPalette from 'RN-Color-Palette';
+import RNColorPalette from 'rn-color-palette';
 
 <RNColorPalette
  colorList={colors}
