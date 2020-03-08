@@ -1,13 +1,11 @@
 {
-  "name": "rn-color-palette",
-  "version": "1.0.0",
+  "name": "@iomechs/rn-color-palette",
+  "version": "0.0.1",
   "description": "A color Picker for RN Devs :)",
   "main": "index.js",
-  "directories": {
-    "example": "examples"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "npm publish  --access public"
   },
   "repository": {
     "type": "git",
@@ -19,10 +17,11 @@
     "palette",
     "color-picker",
     "ios",
-    "android"
+    "android",
+    "iomechs"
   ],
   "author": "Syed Saad Qamar",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/IOMechs/RNColorPalette/issues"
   },
