@@ -173,12 +173,13 @@ export default class ColorWheel extends Component {
     }
   };
 
-  changeInput = text => {
+  changeInput = color => {
     try {
-      if (text[0] === '#' && text.length === 7) {
-        this.forceUpdate(text);
+      if (color[0] === '#' && color.length === 7) {
+        this.forceUpdate(color);
+      } else {
+        this.setState({inputText: color});
       }
-      this.setState({inputText: text});
     } catch (err) {
       console.log(err);
     }
