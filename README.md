@@ -16,7 +16,7 @@ Below you will find some information on how to perform common tasks.<br>
 ## Demo
 ![](assets/android-demo.gif)
 
-## Features `v1.0.0`
+## Features `v0.0.2`
 
 
 ## Installation
@@ -24,11 +24,11 @@ Below you will find some information on how to perform common tasks.<br>
 Install the package in your project's folder by using npm or yarn:
 
 ```
-npm install rn-color-palette
+npm install @iomechs/rn-color-palette
 ```
 or
 ```
-yarn add rn-color-palette
+yarn add @iomechs/rn-color-palette
 ```
 
 ## Basic Usage
@@ -36,7 +36,7 @@ yarn add rn-color-palette
 Import RNColorPalette in your AppComponent as below:
 
 ```
-import RNColorPalette from 'rn-color-palette';
+import RNColorPalette from '@iomechs/rn-color-palette';
 
 <RNColorPalette
  colorList={colors}
