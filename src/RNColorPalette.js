@@ -182,6 +182,7 @@ export default class RNColorPalette extends Component {
                       toggleColorPicker={this.toggleColorPicker}
                       SelectedColor={colour => {
                         this.props.AddPickedColor(colour);
+                        this.props.onItemSelect(colour);
                         this.toggleColorPicker();
                         this.togglePalette();
                       }}
