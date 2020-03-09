@@ -16,7 +16,7 @@ Below you will find some information on how to perform common tasks.<br>
 ## Demo
 ![](assets/android-demo.gif)
 
-## Features `v0.0.2`
+## Features
 
 
 ## Installation

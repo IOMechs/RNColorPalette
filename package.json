@@ -1,6 +1,6 @@
 {
   "name": "@iomechs/rn-color-palette",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A color Picker for RN Devs :)",
   "main": "index.js",
   "scripts": {
