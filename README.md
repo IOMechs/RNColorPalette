@@ -23,11 +23,11 @@ Below you will find some information on how to perform common tasks.<br>
 
 Install the package in your project's folder by using npm or yarn:
 
-```
+```shell
 npm install @iomechs/rn-color-palette
 ```
 or
-```
+```shell
 yarn add @iomechs/rn-color-palette
 ```
 
@@ -35,7 +35,7 @@ yarn add @iomechs/rn-color-palette
 
 Import RNColorPalette in your AppComponent as below:
 
-```
+```javascript
 import RNColorPalette from '@iomechs/rn-color-palette';
 
 class App extends React.Component {
@@ -91,15 +91,15 @@ class App extends React.Component {
 
 Feel free to make Pull Requests for your feature/fix.
 To run the project, run
-```
+```shell
 npm install
 ```
 or
-```
+```shell
 yarn
 ```
 then
-```
+```shell
 npm start
 ```
 ## Props
