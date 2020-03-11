@@ -91,8 +91,8 @@ export default class RNColorPalette extends Component {
     const {screenWidth, picker, openAtTop, openColorPicker} = this.state;
     let {positions} = this.state;
     const {value, colorContainerStyle} = this.props;
-    if (this.props.plattePosition) {
-      let {increaseMargin, decreaseMargin} = this.props.plattePosition;
+    if (this.props.palettePosition) {
+      let {increaseMargin, decreaseMargin} = this.props.palettePosition;
       if (openAtTop === false) {
         if (increaseMargin) {
           increaseMargin = increaseMargin * -1;
@@ -128,8 +128,8 @@ export default class RNColorPalette extends Component {
               style={[
                 styles.modalContainer(screenWidth),
                 positions,
-                this.props.platteStyle
-                  ? this.props.platteStyle
+                this.props.paletteStyle
+                  ? this.props.paletteStyle
                   : {backgroundColor: '#fff'},
               ]}>
               <ScrollView

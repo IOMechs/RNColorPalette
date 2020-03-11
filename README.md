@@ -38,16 +38,48 @@ Import RNColorPalette in your AppComponent as below:
 ```
 import RNColorPalette from '@iomechs/rn-color-palette';
 
-<RNColorPalette
- colorList={colors}
-  value={pickedColor2}
-  onItemSelect={this.colorPicked2}
-  AddPickedColor={colour => this.AddColor(colour)}
-  style={{
-    backgroundColor: pickedColor2,
-    width: 110,
-    height: 30,
-}}>
+class App extends React.Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+        colorValue: 'orange',
+        colors = ['orange', 'red', '#ffd655', '#abeb34', '#b4bec8', '#0acfae', '#ff6d01']; 
+      };
+    }
+    
+    colorPicked = color => {
+      this.setState({
+        colorValue: color,
+      });
+    };
+
+    AddColor = color => {
+      this.setState({
+        colors: [...this.state.colors, color],
+      });
+    };
+    render() {
+      const {colors, colorValue} = this.state;
+      return (
+        <RNColorPalette
+          colorList={colors}
+          value={colorValue}
+          onItemSelect={this.colorPicked}
+          AddPickedColor={color => this.AddColor(color)}
+          style={{
+            backgroundColor: colorValue,
+            width: 110,
+            height: 30,
+          }}>
+          <View style={styles.paletteText}>
+            <Text>Default Palette</Text>
+          </View>
+        </RNColorPalette>
+      );
+    }
+  }
+}
+
 ```
 
 
@@ -74,8 +106,15 @@ npm start
 
 | Props  |  Type  | isRequired | Example                                                                                                                                            |
 | :----- | :----: | :--------: | :------------------------------------------------------------------------------------------------------------------------------------------------- |
-| color  | string |     No     | `'Default is SkyBlue'`, `'green'` or `'#fb6249'` or ` 'rgb(255, 26, 26)'``// If you want Progress bar Opaque, You can use rgba(...) or hsla(...) ` |
-| height | number |     No     | `'Should be a Number, 4 is default'`                                                                           
+| value  | string |     Yes     | `Provide value of color to mark as selected.` |
+| colorList  | array |     No     | `Provide list of colors to show in palette.` |
+| style  | object |     No     | `Style for component passed inside library.` |
+| paletteStyle  | object |     No     | `Style for color palette container.` |
+| palettePosition  | object |     No     | `It has 2 properties, increaseMargin to increase margin from your component and decreaseMargin to descrease margin.` |
+| colorContainerStyle  | object |     No     | `Style color elements inside palette, by-default it's borderRadius: 100.` |
+| onItemSelect  | function |     No     | `Return a color which is selected in palette.` |
+| AddPickedColor  | function |     No     | `Return a color which is added new from picker and by-default it calls onItemSelect.` |
+                                                                     
 
 ## License
 MIT © [IOMechs](https://github.com/IOmechs)

@@ -12,10 +12,13 @@
     "url": "git+https://github.com/IOMechs/RNColorPalette.git"
   },
   "keywords": [
-    "react-native",
-    "color",
     "palette",
     "color-picker",
+    "rn-color-palette",
+    "react-native-color-palette",
+    "color-palette",
+    "react-native",
+    "color",
     "ios",
     "android",
     "iomechs"
