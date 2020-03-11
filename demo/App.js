@@ -73,11 +73,11 @@ class App extends React.Component {
                 width: 110,
                 height: 30,
               }}
-              platteStyle={{
+              paletteStyle={{
                 backgroundColor: '#000',
                 borderRadius: 10,
               }}
-              plattePosition={{
+              palettePosition={{
                 increaseMargin: 5, // to increase margin from element
                 // decreaseMargin: 20, to decrease default margin
               }}
