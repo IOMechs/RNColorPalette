@@ -9,7 +9,7 @@
 
 import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
-import RNColorPalette from '@iomechs/rn-color-palette';
+import RNColorPalette from '@iomechs/rn-color-palette'
 import colorList from './colors';
 
 class App extends React.Component {

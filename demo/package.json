@@ -11,9 +11,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@iomechs/rn-color-palette": "0.0.3",
     "react": "16.9.0",
-    "react-native": "0.61.5",
-    "rn-color-palette": "file:../rn-color-palette-1.0.0.tgz"
+    "react-native": "0.61.5"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -26,6 +26,12 @@
     "react-test-renderer": "16.9.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-(native|universal|navigation)-(.*)|@react-native-community/(.*)|@react-navigation/(.*)|bs-platform)"
+    ]
   }
 }

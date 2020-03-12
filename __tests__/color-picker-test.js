@@ -4,7 +4,7 @@ import ColorPicker from '../src/color-picker';
 import renderer from 'react-test-renderer';
 
 
-test('renders correctly', () => {
+test('ColorPicker Component renders correctly', () => {
   const tree = renderer.create(<ColorPicker />).toJSON();
   expect(tree).toMatchSnapshot();
 });
