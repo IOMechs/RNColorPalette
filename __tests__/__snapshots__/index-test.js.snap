@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorWheel Component renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+    }
+  }
+>
+  <View
+    onLayout={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/color-wheel-picker/color-wheel.png",
+        }
+      }
+      style={
+        Array [
+          Object {
+            "alignSelf": "center",
+          },
+          Object {},
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "backgroundColor": "#ffffff",
+          "borderColor": "#EEEEEE",
+          "borderRadius": 25,
+          "borderWidth": 3,
+          "elevation": 3,
+          "height": 50,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "shadowColor": "rgb(46, 48, 58)",
+          "shadowOffset": Object {
+            "height": 2,
+            "width": 0,
+          },
+          "shadowOpacity": 0.8,
+          "shadowRadius": 2,
+          "top": 0,
+          "width": 50,
+        }
+      }
+    />
+  </View>
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "borderColor": "gray",
+        "borderWidth": 1,
+        "height": 40,
+        "marginVertical": 25,
+        "textAlign": "center",
+        "width": 80,
+      }
+    }
+    underlineColorAndroid="transparent"
+    value="#ffffff"
+  />
+</View>
+`;

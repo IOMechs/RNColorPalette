@@ -1,10 +1,10 @@
 {
   "name": "@iomechs/rn-color-palette",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A color Picker for RN Devs :)",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "node_modules/.bin/jest --coverage",
     "publish:lib": "npm publish  --access public"
   },
   "repository": {

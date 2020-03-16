@@ -1,0 +1,199 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorPicker Component renders correctly 1`] = `
+<RCTScrollView>
+  <View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "space-around",
+          "paddingVertical": 30,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }
+      >
+        <View
+          onLayout={[Function]}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              },
+              Object {
+                "height": 710,
+                "width": 710,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/color-wheel-picker/color-wheel.png",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "alignSelf": "center",
+                },
+                Object {},
+              ]
+            }
+          />
+          <View
+            style={
+              Object {
+                "backgroundColor": "#db3232",
+                "borderColor": "#EEEEEE",
+                "borderRadius": 25,
+                "borderWidth": 3,
+                "elevation": 3,
+                "height": 50,
+                "left": 0,
+                "opacity": 0,
+                "position": "absolute",
+                "shadowColor": "rgb(46, 48, 58)",
+                "shadowOffset": Object {
+                  "height": 2,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.8,
+                "shadowRadius": 2,
+                "top": 0,
+                "width": 50,
+              }
+            }
+          />
+        </View>
+        <TextInput
+          allowFontScaling={true}
+          onChangeText={[Function]}
+          rejectResponderTermination={true}
+          style={
+            Object {
+              "borderColor": "gray",
+              "borderWidth": 1,
+              "height": 40,
+              "marginVertical": 25,
+              "textAlign": "center",
+              "width": 80,
+            }
+          }
+          underlineColorAndroid="transparent"
+          value="#db3232"
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "marginRight": 20,
+            }
+          }
+        >
+          <View
+            accessibilityRole="button"
+            accessibilityStates={Array []}
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {},
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#007AFF",
+                      "fontSize": 18,
+                      "padding": 8,
+                      "textAlign": "center",
+                    },
+                  ]
+                }
+              >
+                Add Color
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          accessibilityRole="button"
+          accessibilityStates={Array []}
+          accessible={true}
+          focusable={false}
+          isTVSelectable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {},
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#007AFF",
+                    "fontSize": 18,
+                    "padding": 8,
+                    "textAlign": "center",
+                  },
+                ]
+              }
+            >
+              Cancel
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
